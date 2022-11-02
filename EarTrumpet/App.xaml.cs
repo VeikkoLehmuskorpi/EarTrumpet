@@ -108,7 +108,7 @@ namespace EarTrumpet
             _trayIcon.PrimaryInvoke += (_, type) => _flyoutViewModel.OpenFlyout(type);
             _trayIcon.SecondaryInvoke += (_, args) => _trayIcon.ShowContextMenu(GetTrayContextMenuItems(), args.Point);
             _trayIcon.TertiaryInvoke += (_, __) => CollectionViewModel.Default?.ToggleMute.Execute(null);
-            _trayIcon.Scrolled += (_, wheelDelta) => CollectionViewModel.Default?.IncrementVolume(Math.Sign(wheelDelta) * 2);
+            _trayIcon.Scrolled += (_, wheelDelta) => TrayIconScrolled(wheelDelta);
             _trayIcon.SetTooltip(CollectionViewModel.GetTrayToolTip());
             _trayIcon.IsVisible = true;
 
@@ -223,6 +223,7 @@ namespace EarTrumpet
                 new SettingsPageViewModel[]
                     {
                         new EarTrumpetShortcutsPageViewModel(_settings),
+                        new EarTrumpetActionPageViewModel(_settings),
                         new EarTrumpetLegacySettingsPageViewModel(_settings),
                         new EarTrumpetAboutPageViewModel(() => _errorReporter.DisplayDiagnosticData(), _settings)
                     });
@@ -278,6 +279,12 @@ namespace EarTrumpet
                     device.IsAbsMuted = true;
                 }
             }
+        }
+
+        private void TrayIconScrolled(int wheelDelta)
+        {
+            if(!_settings.DisableTrayIconScroll)
+                CollectionViewModel.Default?.IncrementVolume(Math.Sign(wheelDelta) * 2);
         }
     }
 }

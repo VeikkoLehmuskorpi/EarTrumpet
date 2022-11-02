@@ -88,6 +88,15 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string ActionPageText {
+            get {
+                return ResourceManager.GetString("ActionPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do.
         /// </summary>
         public static string ActionVerbText {
@@ -1346,6 +1355,15 @@ namespace EarTrumpet.Properties {
         public static string SettingsDescriptionText {
             get {
                 return ResourceManager.GetString("SettingsDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable TrayIconScroll.
+        /// </summary>
+        public static string SettingsDisableTrayIconScroll {
+            get {
+                return ResourceManager.GetString("SettingsDisableTrayIconScroll", resourceCulture);
             }
         }
         
