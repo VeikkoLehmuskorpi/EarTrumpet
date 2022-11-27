@@ -126,6 +126,20 @@ namespace EarTrumpet
             }
         }
 
+        public bool DisableTrayIconScroll
+        {
+            get
+            {
+                var ret = _settings.Get("DisableTrayIconScroll", "False");
+                bool.TryParse(ret, out bool isDisableTrayIconScroll);
+                return isDisableTrayIconScroll;
+            }
+            set
+            {
+                _settings.Set("DisableTrayIconScroll", value.ToString());
+            }
+        }
+
         public bool IsExpanded
         {
             get => _settings.Get("IsExpanded", false);
